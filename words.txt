@@ -15,8 +15,11 @@ alcopop
 alga
 alit
 allay
+allium
 allocable
 allot
+alumina
+alumna
 amino
 amok
 amyl
@@ -156,6 +159,8 @@ icily
 idly
 idyl
 iliac
+ilium
+illuminati
 illy
 imam
 imbibing
@@ -185,6 +190,7 @@ kola
 korma
 lade
 laic
+lama
 laud
 lede
 lenience
@@ -278,6 +284,8 @@ roti
 ruff
 tacet
 tali
+tantalum
+tatami
 teat
 teem
 tenon
@@ -291,8 +299,10 @@ toro
 trig
 tutti
 ukulele
+umami
 unapt
 unguent
+unman
 unrig
 uvula
 veld
