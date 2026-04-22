@@ -53,6 +53,7 @@ bedeck
 belie
 biff
 blin
+blini
 bloc
 boba
 bocce
@@ -118,6 +119,7 @@ epee
 epicene
 ethyl
 eunuch
+evince
 feint
 fifing
 floe
@@ -194,12 +196,14 @@ kola
 korma
 lade
 laic
+laity
 lama
 laud
 lede
 lenience
 licit
 liftoff
+lilt
 limn
 lira
 llano
@@ -311,6 +315,7 @@ unrig
 uvula
 veld
 venule
+vincible
 viny
 vulva
 vulval
