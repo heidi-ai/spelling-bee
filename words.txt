@@ -346,3 +346,4 @@ tinct
 valve
 vagal
 vegetal
+vegetate
