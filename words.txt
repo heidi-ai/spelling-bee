@@ -349,3 +349,4 @@ vegetal
 vegetate
 gavage
 gavotte
+lavage
