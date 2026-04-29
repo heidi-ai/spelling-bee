@@ -351,3 +351,4 @@ gavage
 gavotte
 lavage
 levee
+lovage
