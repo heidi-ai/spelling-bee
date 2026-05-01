@@ -17,10 +17,15 @@ def save_words(words):
         f.write("\n".join(sorted(set(words))) + "\n" if words else "")
 
 
+def print_word_list(words):
+    for i, word in enumerate(words, 1):
+        print(f"{i:3}. {word}")
+
+
 def cmd_export():
     words = load_words()
     if words:
-        print("\n".join(words))
+        print_word_list(words)
 
 
 def cmd_add(new_words):
@@ -42,7 +47,7 @@ def cmd_search(prefix):
     prefix = prefix.lower()
     matches = [w for w in load_words() if w.startswith(prefix)]
     if matches:
-        print("\n".join(matches))
+        print_word_list(matches)
     else:
         print(f"No words starting with '{prefix}'.")
 
