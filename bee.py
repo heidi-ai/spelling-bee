@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 import sys
 import os
+import subprocess
+from datetime import datetime, timezone, timedelta
 
 WORDS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "words.txt")
+MOUNTAIN_TZ = timezone(timedelta(hours=-6))  # MDT (UTC-6)
+
+
+def to_mountain(dt):
+    return dt.astimezone(MOUNTAIN_TZ)
 
 
 def load_words():
@@ -37,8 +44,9 @@ def cmd_add(new_words):
             words.add(w)
             added.append(w)
     save_words(list(words))
+    now = to_mountain(datetime.now(timezone.utc))
     if added:
-        print(f"Added: {', '.join(sorted(added))}")
+        print(f"Added: {', '.join(sorted(added))}  [{now.strftime('%Y-%m-%d %H:%M MDT')}]")
     else:
         print("No new words (all duplicates).")
 
@@ -52,9 +60,28 @@ def cmd_search(prefix):
         print(f"No words starting with '{prefix}'.")
 
 
+def cmd_history(n):
+    result = subprocess.run(
+        ["git", "log", "--format=%ad %s", "--date=iso-strict", "-n", str(n)],
+        cwd=os.path.dirname(os.path.abspath(__file__)),
+        capture_output=True, text=True,
+    )
+    for line in result.stdout.splitlines():
+        parts = line.split(" ", 1)
+        if len(parts) < 2:
+            continue
+        ts_str, subject = parts
+        try:
+            dt = datetime.fromisoformat(ts_str)
+            mdt = to_mountain(dt)
+            print(f"{mdt.strftime('%Y-%m-%d %H:%M MDT')}  {subject}")
+        except ValueError:
+            print(line)
+
+
 def main():
     if len(sys.argv) < 2:
-        print("Usage: bee.py export | add WORD... | search PREFIX")
+        print("Usage: bee.py export | add WORD... | search PREFIX | history [N]")
         sys.exit(1)
 
     command = sys.argv[1].lower()
@@ -71,9 +98,12 @@ def main():
             print("Usage: bee.py search PREFIX")
             sys.exit(1)
         cmd_search(sys.argv[2])
+    elif command == "history":
+        n = int(sys.argv[2]) if len(sys.argv) > 2 else 10
+        cmd_history(n)
     else:
         print(f"Unknown command: {command}")
-        print("Usage: bee.py export | add WORD... | search PREFIX")
+        print("Usage: bee.py export | add WORD... | search PREFIX | history [N]")
         sys.exit(1)
 
 
