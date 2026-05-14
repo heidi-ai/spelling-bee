@@ -390,3 +390,4 @@ cocoon
 combatant
 noncombatant
 noncom
+octant
